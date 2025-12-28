@@ -31,6 +31,9 @@ def get_next_token(logits, temperature=0.0):
     return next_token.item()
 
 def generate_batch(model, tokenizer, prompt, n=1, max_length=50, temperature=0.7):
+    """
+    Generate a batch of answers to the given prompt using the given model and tokenizer (More Efficient)
+    """
     model_inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
     
     generated_ids = model.generate(
@@ -41,7 +44,7 @@ def generate_batch(model, tokenizer, prompt, n=1, max_length=50, temperature=0.7
         do_sample=(temperature > 0),
         top_k=50,
         pad_token_id=tokenizer.eos_token_id,
-        stop_strings=["Question:", "Answer:", "<|im_ed|>"],
+        stop_strings=["<|im_end|>"],
         tokenizer=tokenizer
     )
 
@@ -53,6 +56,9 @@ def generate_batch(model, tokenizer, prompt, n=1, max_length=50, temperature=0.7
     return decoded_response
 
 def generate_answer(model, tokenizer, prompt, temperature=0.0, max_length=30, verbose=False):
+    """
+    Generate a single answer to the given prompt using the given model and tokenizer (Less Efficient)
+    """
     if verbose:
         print("Prompt: ", prompt, end="\nResponse: ")
     output_text = ""

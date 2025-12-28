@@ -28,7 +28,6 @@ def grade_batch(question, candidate_answers):
             ]
         }
     ]
-    print("Grading answers: ", candidate_answers)
 
     max_retries = 3
     for attempt in range(max_retries):
@@ -37,14 +36,12 @@ def grade_batch(question, candidate_answers):
                 model="gemini-2.5-flash",
                 contents=message,
             )
-            print("Grading response: ", response.text)
             match = re.search("\[(.*?)\]", response.text)
             if match:
                 return [float(score) for score in match.group(1).split(",")]
             else:
                 return [0.0] * len(candidate_answers)
         except exceptions.ResourceExhausted:
-            print("hi")
             wait_time = 20 * (attempt + 1) 
             time.sleep(wait_time)
         except Exception as e:

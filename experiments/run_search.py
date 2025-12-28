@@ -6,7 +6,7 @@ def solve_math_problem(question, max_steps=10):
     print("Loading model...")
     model, tokenizer = load_model()
 
-    current_state = f"Question: {question}\nLet's think step by step and output the final answer inside \\boxed{{}}."
+    current_state = f"Question: {question}\nLet's think step by step and output the final answer inside \\boxed."
     
     print(f"\nThinking about: {question}...\n")
     
@@ -34,7 +34,7 @@ def solve_math_problem(question, max_steps=10):
     return current_state
 
 if __name__ == "__main__":
-    final_trace = solve_math_problem("What is 15 * 13?")
+    final_trace = solve_math_problem("A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost?")
     
     print("\n" + "="*30)
     print("FINAL TRACE")
