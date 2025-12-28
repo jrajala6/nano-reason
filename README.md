@@ -38,7 +38,7 @@ Tested on a randomized subset of the GSM8K Test Set (N=50).
 
 By setting `construct_dot` in the `selection_loop` method, you can generate a graphical visualization of the logic paths.
 
-![alt text][(https://github.com/jrajala6/nano-reason/blob/main/mcts_tree.png?raw=true)]
+![MCTS Tree Graph](https://github.com/jrajala6/nano-reason/blob/main/mcts_tree.png?raw=true)
 
 
 ### Analysis of Results
