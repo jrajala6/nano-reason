@@ -34,6 +34,13 @@ Tested on a randomized subset of the GSM8K Test Set (N=50).
 | **System 1 (Zero-Shot)** | 82% | ~8s | Standard generation. Fast but prone to logical drifts. |
 | **System 2 (MCTS)** | 84% | ~150s | Tree search with backtracking. Higher accuracy, significantly higher compute cost. |
 
+## Graph Visualization
+
+By setting `construct_dot` in the `selection_loop` method, you can generate a graphical visualization of the logic paths.
+
+![alt text][(https://github.com/jrajala6/nano-reason/blob/main/mcts_tree.png?raw=true)]
+
+
 ### Analysis of Results
 * **Base Model Saturation:** The 1.5B model is surprisingly capable at GSM8K (82% baseline), leaving little room for MCTS to improve on "standard" arithmetic problems.
 * **The "Verifier Bottleneck":** The accuracy gain was capped by the Verifier's strictness. In several failure cases, MCTS found a wrong answer, but the Verifier hallucinated a high score (0.9), causing the agent to accept the error confidently.
