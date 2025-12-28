@@ -3,7 +3,7 @@ import dotenv
 import os
 import time
 import re
-from .generator import load_model, generate_batch
+from generator import load_model, generate_batch
 from google.api_core import exceptions
 dotenv.load_dotenv()
 
